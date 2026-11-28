@@ -368,5 +368,28 @@ class ChatEndpointTests(unittest.TestCase):
         self.assertNotIn("move children outdoors", answer.lower())
 
 
+class ActionPlanIntentTests(unittest.TestCase):
+    def test_factual_questions_are_not_misclassified_as_action_plans(self):
+        for question in (
+            "What does PM2.5 mean?",
+            "What do these readings mean?",
+            "What should PM2.5 be?",
+            "What can cause high PM10?",
+        ):
+            with self.subTest(question=question):
+                self.assertFalse(main.action_plan_question(question))
+
+    def test_direct_action_plan_questions_are_recognized(self):
+        for question in (
+            "What should my family do today?",
+            "What should we do?",
+            "What can I do today?",
+            "Can my children play outside?",
+            "Show me the action plan",
+        ):
+            with self.subTest(question=question):
+                self.assertTrue(main.action_plan_question(question))
+
+
 if __name__ == "__main__":
     unittest.main()
