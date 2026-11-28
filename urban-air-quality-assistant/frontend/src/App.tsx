@@ -332,6 +332,8 @@ function App() {
       result.hourly.time = Array.isArray(result.hourly.time)
         ? result.hourly.time
         : [];
+      setIndoorLoading(true);
+      setIndoorError("");
       setData(result);
 
       const recommendationResponse = await fetch(
@@ -397,8 +399,6 @@ function App() {
     }
 
     const requestSequence = indoorRequestSequence.current.begin();
-    setIndoorLoading(true);
-    setIndoorError("");
     indoorRequestAbort.current?.abort();
     chatRequestAbort.current?.abort();
     chatRequestSequence.current.invalidate();
