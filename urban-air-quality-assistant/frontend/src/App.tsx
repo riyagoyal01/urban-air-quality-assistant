@@ -397,6 +397,8 @@ function App() {
     }
 
     const requestSequence = indoorRequestSequence.current.begin();
+    setIndoorLoading(true);
+    setIndoorError("");
     indoorRequestAbort.current?.abort();
     chatRequestAbort.current?.abort();
     chatRequestSequence.current.invalidate();
