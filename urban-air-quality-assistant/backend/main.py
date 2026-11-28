@@ -487,9 +487,14 @@ def format_authoritative_recommendations(recommendations: list[dict] | None) -> 
 def action_plan_question(question: str) -> bool:
     lowered = question.lower()
     return any(phrase in lowered for phrase in (
-        "what should",
-        "what can",
-        "what do",
+        "what should my family do",
+        "what should we do",
+        "what should i do",
+        "what can my family do",
+        "what can we do",
+        "what can i do",
+        "what do we do",
+        "what do i do",
         "action plan",
         "do today",
         "play outside",
